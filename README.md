@@ -1,6 +1,6 @@
-# BIC4 Project: The Peruvian cookbook
+# BIC4 Project: Peruvian cookbook
 
-## Cooking Peruvian - the recipe dictionary
+## The Peruvian cookbook
 
 This software lists peruvian recipes and ingredients belongs to them.
 It is possible to search for ingredients by various parameters.

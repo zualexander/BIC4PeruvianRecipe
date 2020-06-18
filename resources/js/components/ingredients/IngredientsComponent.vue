@@ -32,11 +32,11 @@
                         <!--                        </tr>-->
                         <!--                        </tfoot>-->
                         <tbody>
-                        <tr>
-                            <th>Name</th>
-                            <td>Slug</td>
-                            <td>Description</td>
-                            <td>Last changed</td>
+                        <tr v-for="ingredient in ingredients">
+                            <td>{{ingredient.name}}</td>
+                            <td>{{ingredient.slug}}</td>
+                            <td>{{ingredient.description}}</td>
+                            <td>{{ingredient.updated_at}}</td>
                         </tr>
                         </tbody>
                     </table>

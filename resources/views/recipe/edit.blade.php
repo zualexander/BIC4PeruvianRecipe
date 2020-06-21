@@ -4,7 +4,8 @@
 @section('content')
     <section class="section">
         <div class="container">
-            <h1>Edit recipe</h1>
+            <hero title="Edit Recipe"></hero>
+            <recipe-form :recipe="{{$recipe}}"></recipe-form>
         </div>
     </section>
 @endsection

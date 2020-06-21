@@ -1,7 +1,7 @@
 import Errors from './Errors';
 
 class Form {
-    constructor(data){
+    constructor(data) {
         this.noReset = [];
         this.successMessage = '';
         this.failMessage = '';
@@ -9,7 +9,7 @@ class Form {
         this.errors = new Errors();
         this.submitting = false;
 
-        for(let field in data){
+        for (let field in data) {
             this[field] = data[field];
         }
     }
@@ -17,16 +17,19 @@ class Form {
     data() {
         let data = {};
 
-        for(let property in this.originalData){
+        for (let property in this.originalData) {
+            if (property === 'slug') {
+                continue;
+            }
             data[property] = this[property];
         }
 
         return data;
     }
 
-    reset(){
-        for(let field in this.originalData){
-            if(!_.includes(this.noReset, field) && (field !== 'noReset'))
+    reset() {
+        for (let field in this.originalData) {
+            if (!_.includes(this.noReset, field) && (field !== 'noReset'))
                 this[field] = '';
         }
 
@@ -50,7 +53,7 @@ class Form {
     }
 
 
-    isSubmitting(){
+    isSubmitting() {
         return this.submitting;
     }
 
@@ -82,8 +85,12 @@ class Form {
 
     onFail(data) {
         this.clearMessage();
-        this.failMessage = data.message;
-        this.errors.record(data.errors);
+        if (!data) {
+            this.failMessage = 'something unexpected happened';
+        } else {
+            this.failMessage = data.message;
+            this.errors.record(data.errors);
+        }
         this.submitting = false;
     }
 

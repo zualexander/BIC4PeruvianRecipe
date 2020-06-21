@@ -6,6 +6,11 @@
 require('./bootstrap');
 
 import vue from 'vue';
+import VueFilterDateFormat from '@vuejs-community/vue-filter-date-format';
+import VueFilterDateParse from '@vuejs-community/vue-filter-date-parse';
+
+vue.use(VueFilterDateParse);
+vue.use(VueFilterDateFormat);
 
 window.Vue = vue;
 
@@ -20,8 +25,12 @@ window.Vue = vue;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('query-message', require('./components/base/QueryMessage.vue').default);
+Vue.component('navigation-message', require('./components/base/NavigationMessage.vue').default);
+Vue.component('hero', require('./components/base/HeroComponent.vue').default);
+Vue.component('recipe-table', require('./components/recipes/RecipeTableComponent.vue').default);
+Vue.component('recipe-list', require('./components/recipes/RecipeListComponent.vue').default);
+Vue.component('recipe-form', require('./components/recipes/RecipeFormComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

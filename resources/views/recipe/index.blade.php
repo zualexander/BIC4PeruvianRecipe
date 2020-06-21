@@ -2,9 +2,10 @@
 
 
 @section('content')
-    <section class="section">
-        <div class="container">
-            <h1>List recipe</h1>
-        </div>
-    </section>
+<section class="section">
+    <div class="container">
+        <hero title="Recipes" sub-title="List of all recipes"></hero>
+        <recipe-list></recipe-list>
+    </div>
+</section>
 @endsection

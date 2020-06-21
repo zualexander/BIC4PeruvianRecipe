@@ -2,9 +2,9 @@
 
 
 @section('content')
-    <section class="section">
-        <div class="container">
-            <h1>Edit ingredient</h1>
-        </div>
-    </section>
+<section class="section">
+    <div class="container">
+        <hero title="Update the ingredient"></hero>
+    </div>
+</section>
 @endsection

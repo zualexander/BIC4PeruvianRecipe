@@ -31,6 +31,9 @@ Vue.component('hero', require('./components/base/HeroComponent.vue').default);
 Vue.component('recipe-table', require('./components/recipes/RecipeTableComponent.vue').default);
 Vue.component('recipe-list', require('./components/recipes/RecipeListComponent.vue').default);
 Vue.component('recipe-form', require('./components/recipes/RecipeFormComponent.vue').default);
+Vue.component('ingredient-table', require('./components/ingredients/IngredientTableComponent.vue').default);
+Vue.component('ingredient-list', require('./components/ingredients/IngredientListComponent.vue').default);
+Vue.component('ingredient-form', require('./components/ingredients/IngredientFormComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

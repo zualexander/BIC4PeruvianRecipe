@@ -4,8 +4,8 @@
 @section('content')
     <section class="section">
         <div class="container">
-            <h1>List ingredient</h1>
-            <ingredients></ingredients>
+            <hero title="Ingredients" sub-title="List of all ingredients"></hero>
+            <ingredient-list></ingredient-list>
         </div>
     </section>
 @endsection

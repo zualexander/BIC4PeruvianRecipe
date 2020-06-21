@@ -42,7 +42,7 @@ class IngredientController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -57,7 +57,7 @@ class IngredientController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Ingredient  $ingredient
+     * @param \App\Ingredient $ingredient
      * @return \Illuminate\Http\Response
      */
     public function show(Ingredient $ingredient)
@@ -68,19 +68,19 @@ class IngredientController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Ingredient  $ingredient
+     * @param \App\Ingredient $ingredient
      * @return \Illuminate\Http\Response
      */
     public function edit(Ingredient $ingredient)
     {
-        return view('ingredient.edit', compact($ingredient));
+        return view('ingredient.edit', compact('ingredient'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Ingredient  $ingredient
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Ingredient $ingredient
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Ingredient $ingredient)
@@ -95,7 +95,7 @@ class IngredientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Ingredient  $ingredient
+     * @param \App\Ingredient $ingredient
      * @return \Illuminate\Http\Response
      */
     public function destroy(Ingredient $ingredient)
@@ -118,7 +118,7 @@ class IngredientController extends Controller
     /**
      * Return search result.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function query(Request $request)
@@ -130,8 +130,8 @@ class IngredientController extends Controller
         return Ingredient::query()
             ->where('name', 'LIKE', "%{$search}%")
             ->orWhere('description', 'LIKE', "%{$search}%")
-            ->orWhereHas('recipe', function ($q) use ($search){
-                $q  ->where('name', 'LIKE', "%{$search}%")
+            ->orWhereHas('recipe', function ($q) use ($search) {
+                $q->where('name', 'LIKE', "%{$search}%")
                     ->orWhere('description', 'LIKE', "%{$search}%");
             })
             ->with('recipe')

@@ -2,10 +2,10 @@
 
 
 @section('content')
-    <section class="section">
-        <div class="container">
-            <h1>Create ingredient</h1>
-            <create-ingredient></create-ingredient>
-        </div>
-    </section>
+<section class="section">
+    <div class="container">
+        <hero title="Create Ingredient"></hero>
+        <ingredient-form></ingredient-form>
+    </div>
+</section>
 @endsection

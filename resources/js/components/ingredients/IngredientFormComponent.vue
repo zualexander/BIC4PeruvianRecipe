@@ -4,11 +4,11 @@
             <div class="column is-five-fifths">
                 <div class="box custom-box">
                     <form v-on:submit.prevent="sendForm">
-                        <!-- recipe name -->
+                        <!-- ingredient name -->
                         <div class="field">
-                            <label class="label">Recipe name</label>
+                            <label class="label">Ingredient name</label>
                             <div class="control">
-                                <input class="input" type="text" placeholder="Name of the recipe"
+                                <input class="input" type="text" placeholder="Name of the ingredient"
                                        v-model="form.name" v-bind:disabled="!editable">
                             </div>
                         </div>
@@ -16,8 +16,18 @@
                         <div class="field">
                             <label class="label">Description</label>
                             <div class="control">
-                                <textarea class="textarea" placeholder="Description of the recipe"
+                                <textarea class="textarea" placeholder="Description of the ingredient"
                                           v-model="form.description" v-bind:disabled="!editable"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- recipe -->
+                        <div class="field ">
+                            <label class="label">Recipe</label>
+                            <div class="select is-fullwidth">
+                                <select v-model="form.recipe_id" v-bind:disabled="!editable">
+                                    <option v-for="recipe in recipes" :value="recipe.id">{{recipe.name}}</option>
+                                </select>
                             </div>
                         </div>
 
@@ -39,7 +49,7 @@
         </div>
         <navigation-message v-if="createdData"
                             :entity="createdData"
-                            url="/recipe"></navigation-message>
+                            url="/ingredient"></navigation-message>
         <query-message v-else-if="form.isFail()"
                        :success="form.isSuccess()"
                        :fail="form.isFail()"
@@ -51,27 +61,30 @@
     const DEFAULT_FORM = {
         id: null,
         name: null,
-        description: null
+        description: null,
+        recipe_id: null
     };
     export default {
-        name: "RecipeFormComponent",
+        name: "IngredientFormComponent",
         data: function () {
             return {
                 form: null,
-                createdData: null
+                createdData: null,
+                recipes: []
             }
         },
         props: {
-            recipe: {type: Object},
+            ingredient: {type: Object},
             editable: {type: Boolean, default: true}
         },
         created: function () {
-            if (this.recipe) {
-                this.form = new Form(this.recipe);
+            if (this.ingredient) {
+                this.form = new Form(this.ingredient);
             } else {
                 this.form = new Form(DEFAULT_FORM);
             }
-            this.form.noReset = ['id', 'name', 'description'];
+            this.form.noReset = ['id', 'name', 'description', 'recipe_id'];
+            this.fetchRecipes();
         },
         methods: {
             sendForm: function () {
@@ -79,19 +92,27 @@
                 const formSlug = this.form['slug'];
                 const isUpdate = !!formId;
                 const formPromise = formId ?
-                    this.form.patch('/recipe/' + formSlug) :
-                    this.form.post('/recipe');
+                    this.form.patch('/ingredient/' + formSlug) :
+                    this.form.post('/ingredient');
                 formPromise
-                    .then((createdRecipe) => {
-                        this.createdData = createdRecipe;
+                    .then((createdIngredient) => {
+                        this.createdData = createdIngredient;
                         if (isUpdate) {
-                            window.location.href = '/recipe/';
+                            window.location.href = '/ingredient/';
                         }
                     }).catch((error) => {
                         console.error(error);
                     }
                 );
-            }
+            }, fetchRecipes() {
+                axios["get"]("/list/recipe")
+                    .then(res => res.data)
+                    .then(res => {
+                        this.recipes = res;
+                        this.isEmpty = _.isEmpty(this.recipes);
+                    })
+                    .catch(err => console.error(err));
+            },
         }
     }
 </script>

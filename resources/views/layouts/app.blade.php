@@ -142,7 +142,6 @@
 
     <footer class="footer">
         <div class="content has-text-centered">
-            <small>Here comes some footer</small>
         </div>
     </footer>
 </div>

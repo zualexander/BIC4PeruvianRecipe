@@ -2484,8 +2484,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "RecipeTableComponent",
   props: {
@@ -2710,8 +2708,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
 //
 //
 //
@@ -20792,8 +20788,6 @@ var render = function() {
         return _c("tr", [
           _c("td", [_vm._v(_vm._s(ingredient.name))]),
           _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(ingredient.slug))]),
-          _vm._v(" "),
           _c("td", [_vm._v(_vm._s(ingredient.recipe.name))]),
           _vm._v(" "),
           _c("td", [_vm._v(_vm._s(ingredient.description))]),
@@ -20852,8 +20846,6 @@ var staticRenderFns = [
     return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("Name")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Slug")]),
         _vm._v(" "),
         _c("th", [_vm._v("Recipe")]),
         _vm._v(" "),
@@ -21182,8 +21174,6 @@ var render = function() {
         return _c("tr", [
           _c("td", [_vm._v(_vm._s(recipe.name))]),
           _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(recipe.slug))]),
-          _vm._v(" "),
           _c("td", [_vm._v(_vm._s(recipe.description))]),
           _vm._v(" "),
           _c("td", [
@@ -21240,8 +21230,6 @@ var staticRenderFns = [
     return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("Name")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Slug")]),
         _vm._v(" "),
         _c("th", [_vm._v("Description")]),
         _vm._v(" "),

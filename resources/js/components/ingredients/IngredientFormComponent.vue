@@ -24,7 +24,7 @@
                         <!-- recipe -->
                         <div class="field ">
                             <label class="label">Recipe</label>
-                            <div class="select is-fullwidth">
+                            <div class="select is-fullwidth" v-bind:class="{'is-loading': recipesLoading}">
                                 <select v-model="form.recipe_id" v-bind:disabled="!editable">
                                     <option v-for="recipe in recipes" :value="recipe.id">{{recipe.name}}</option>
                                 </select>
@@ -70,7 +70,8 @@
             return {
                 form: null,
                 createdData: null,
-                recipes: []
+                recipes: [],
+                recipesLoading: false
             }
         },
         props: {
@@ -105,10 +106,12 @@
                     }
                 );
             }, fetchRecipes() {
+                this.recipesLoading = true;
                 axios["get"]("/list/recipe")
                     .then(res => res.data)
                     .then(res => {
                         this.recipes = res;
+                        this.recipesLoading = false;
                         this.isEmpty = _.isEmpty(this.recipes);
                     })
                     .catch(err => console.error(err));

@@ -65,7 +65,7 @@
                 this.deleteEntity = null;
             },
             confirmDeletion() {
-                axios['delete']('recipe/' + this.deleteEntity.slug)
+                axios['delete']('/recipe/' + this.deleteEntity.slug)
                     .then(() => {
                         this.deleteEntity = null;
                         this.fetchData();

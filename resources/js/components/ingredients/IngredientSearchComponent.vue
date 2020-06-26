@@ -2,14 +2,23 @@
     <div class="container">
         <div class="columns is-multiline">
             <div class="column is-five-fifths">
-                <div class="box custom-box" v-if="!isEmpty">
-                    <ingredient-table :ingredients="ingredients"
-                                  @delete="deleteItem"></ingredient-table>
+                <div class="box custom-box">
+                    <div class="field">
+                        <label class="label">Search Ingredients: </label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input " type="text" placeholder="Search Ingredient" v-model="searchQuery">
+                            <span class="icon is-small is-left"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                    <hr>
+                    <ingredient-table v-if="filteredIngredients.length > 0"
+                                      :ingredients="filteredIngredients"
+                                      @delete="deleteItem"></ingredient-table>
+                    <template v-else>
+                        No ingredients found
+                        <!-- todo: implement loading spinner -->
+                    </template>
                 </div>
-                <template v-else>
-                    No ingredients found
-                    <!-- todo: implement loading spinner -->
-                </template>
             </div>
         </div>
 
@@ -37,24 +46,32 @@
 
 <script>
     export default {
-        name: "IngredientListComponent",
+        name: "IngredientSearchComponent",
         data() {
             return {
-                isEmpty: true,
+                searchQuery: '',
+                ingredients: [],
                 deleteEntity: null,
-                ingredients: []
             }
         },
         created: function () {
-            this.fetchData();
+            this.initData();
+        },
+        computed: {
+            filteredIngredients: function () {
+                return this.ingredients.filter((ingredient) => ingredient.name.toLowerCase().startsWith(this.searchQuery.toLowerCase()));
+            },
         },
         methods: {
+            initData() {
+                this.fetchData();
+                this.deleteEntity = null;
+            },
             fetchData() {
                 axios["get"]("/list/ingredient")
                     .then(res => res.data)
                     .then(res => {
                         this.ingredients = res;
-                        this.isEmpty = _.isEmpty(this.ingredients);
                     })
                     .catch(err => console.error(err));
             },
@@ -68,8 +85,11 @@
                 axios['delete']('/ingredient/' + this.deleteEntity.slug)
                     .then(() => {
                         this.deleteEntity = null;
-                        this.fetchData();
+                        this.initData();
                     });
+            },
+            setIngredients(ingredients) {
+                this.ingredients = ingredients;
             }
         }
     }

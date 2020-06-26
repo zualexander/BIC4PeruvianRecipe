@@ -34,6 +34,7 @@ Vue.component('recipe-form', require('./components/recipes/RecipeFormComponent.v
 Vue.component('ingredient-table', require('./components/ingredients/IngredientTableComponent.vue').default);
 Vue.component('ingredient-list', require('./components/ingredients/IngredientListComponent.vue').default);
 Vue.component('ingredient-form', require('./components/ingredients/IngredientFormComponent.vue').default);
+Vue.component('ingredient-search', require('./components/ingredients/IngredientSearchComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

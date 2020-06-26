@@ -3,7 +3,6 @@
         <thead>
         <tr>
             <th>Name</th>
-            <th>Slug</th>
             <th>Recipe</th>
             <th>Description</th>
             <th>Last Changed</th>
@@ -13,7 +12,6 @@
         <tbody>
         <tr v-for="ingredient in ingredients">
             <td>{{ingredient.name}}</td>
-            <td>{{ingredient.slug}}</td>
             <td>{{ingredient.recipe.name}}</td>
             <td>{{ingredient.description}}</td>
             <td>{{ingredient.updated_at | dateParse | dateFormat}}</td>
